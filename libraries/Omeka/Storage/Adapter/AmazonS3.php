@@ -8,6 +8,7 @@ class Omeka_Storage_Adapter_AmazonS3 implements Omeka_Storage_Adapter_AdapterInt
     const AWS_KEY_OPTION = 'accessKeyId';
     const AWS_SECRET_KEY_OPTION = 'secretAccessKey';
     const REGION_OPTION = 'region';
+    const ENDPOINT_OPTION = 'endpoint';
     const BUCKET_OPTION = 'bucket';
     const EXPIRATION_OPTION = 'expiration';
 
@@ -40,6 +41,10 @@ class Omeka_Storage_Adapter_AmazonS3 implements Omeka_Storage_Adapter_AdapterInt
             throw new Omeka_Storage_Exception('You must specify your AWS access key and secret key to use the AmazonS3 storage adapter.');
         }
 
+        if (!array_key_exists(self::ENDPOINT_OPTION, $options)) {
+            throw new Omeka_Storage_Exception('You must specify an S3-compatible endpoint to use the AmazonS3 storage adapter.');
+        }
+        
         if (!array_key_exists(self::REGION_OPTION, $options)) {
             throw new Omeka_Storage_Exception('You must specify an S3 region name to use the AmazonS3 storage adapter.');
         }
@@ -50,6 +55,7 @@ class Omeka_Storage_Adapter_AmazonS3 implements Omeka_Storage_Adapter_AdapterInt
 
         $this->_s3 = new Aws\S3\S3Client([
             'version' => 'latest',
+            'endpoint' => $options[self::ENDPOINT_OPTION],
             'region' => $options[self::REGION_OPTION]
         ]);
     }

@@ -1,14 +1,14 @@
-Omeka Amazon S3 Storage Adapter
+Omeka Amazon S3 Compatible Storage Adapter
 ===============================
 
-This is an S3 storage adapter for Omeka that provides an _alternative_ to
+This is an S3 compatible storage adapter for Omeka that provides an _alternative_ to
 the `Omeka_Storage_Adapter_ZendS3` which ships with the application.
 
 The main differences are:
 
  - this adapter uses the official AWS S3 SDK library
  - it requires PHP 5.5 or above
- - requires you supply the AWS region in the configuration
+ - requires you supply the custom endpoint in the configuration
  - it supports the V4 authorization mechanism that is required on AWS
    regions created after July 2014
 
@@ -23,7 +23,7 @@ storage.adapter = Omeka_Storage_Adapter_AmazonS3
 storage.adapterOptions.accessKeyId = MY-ACCESS-KEY-ID
 storage.adapterOptions.secretAccessKey = MY-SECRET-KEY
 storage.adapterOptions.bucket = my-bucket-name
-storage.adapterOptions.region = eu-central-1
+storage.adapterOptions.endpoint = https://yourcustomendpoint
 ```
 
 **Note**: This plugin has not yet been tested much so use at your own risk!
